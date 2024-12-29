@@ -52,16 +52,17 @@ jobs:
         with:
           type: 'zip'
           filename: 'Torzu_winOS-x64.zip'
-          directory: '${{ github.workspace }}/build/bin/Release'
-          path: '${{ github.workspace }}/build/Release'
+          directory: '${{ github.workspace }}/build'
+          path: '${{ github.workspace }}/build/bin/Release'
 
       - name: Release
         uses: ncipollo/release-action@v1.14.0
         with:
           name: "$env:CURRENT_DATE"
-          artifacts: "${{ github.workspace }}/build/Release/*.zip"
+          artifacts: "${{ github.workspace }}/build/Torzu_winOS-x64.zip"
           tag: "$env:CURRENT_DATE"
           commit: master
           allowUpdates: true
           replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
+
