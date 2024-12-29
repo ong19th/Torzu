@@ -22,8 +22,7 @@ jobs:
       - name: Prepare Visual Studio
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 6.x
-          cache: true
+          dotnet-version: 8.x
 
       - name: Prepare Vulkan SDK
         uses: humbletim/setup-vulkan-sdk@v1.2.0
