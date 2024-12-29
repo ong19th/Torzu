@@ -52,8 +52,8 @@ jobs:
         with:
           type: 'zip'
           filename: 'Torzu_winOS-x64.zip'
-          directory: '${{ github.workspace }}/build/Release'
-          path: '${{ github.workspace }}/build/bin/Release'
+          directory: '${{ github.workspace }}/build/bin/Release'
+          path: '${{ github.workspace }}/build/Release'
 
       - name: Release
         uses: ncipollo/release-action@v1.14.0
