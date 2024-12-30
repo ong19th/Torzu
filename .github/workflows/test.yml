@@ -17,8 +17,8 @@ jobs:
       - name: Release
         uses: ncipollo/release-action@v1.14.0
         with:
-          name: 'v$env:CURRENT_DATE'
-          tag: 'v$env:CURRENT_DATE'
+          name: ${{ github.run_number }}
+          tag: ${{ github.run_number }}
           commit: master
           allowUpdates: true
           replacesArtifacts: true
