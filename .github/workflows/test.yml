@@ -1,0 +1,24 @@
+name: Build
+on:
+  workflow_dispatch:
+    inputs: {}
+jobs:
+  build:
+    name: Build for winOS-x64
+    runs-on: windows-latest
+    steps:
+      - name: Get Current Date
+        id: current_date
+        run: |
+          $CURRENT_DATE=& Get-Date -format yyyy-MM-dd
+          echo "CURRENT_DATE=$CURRENT_DATE" >> $env:GITHUB_ENV
+
+      - name: Release
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          name: ${{ env:CURRENT_DATE }}
+          tag: ${{ env:CURRENT_DATE }}"
+          commit: master
+          allowUpdates: true
+          replacesArtifacts: true
+          token: ${{ secrets.GITHUB_TOKEN }}
