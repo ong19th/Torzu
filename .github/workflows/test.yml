@@ -10,7 +10,8 @@ jobs:
       - name: Get Current Date
         id: current_date
         run: |
-          $CURRENT_DATE=& Get-Date -format yyyy-MM-dd
+          $CURRENT_DATE=& Get-Date -format yyyy.MM.dd
+          echo $CURRENT_DATE
           echo "CURRENT_DATE=$CURRENT_DATE" >> $env:GITHUB_ENV
 
       - name: Release
