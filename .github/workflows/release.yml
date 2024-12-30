@@ -58,9 +58,9 @@ jobs:
       - name: Release
         uses: ncipollo/release-action@v1.14.0
         with:
-          name: $env:CURRENT_DATE
+          name: v$env:CURRENT_DATE
           artifacts: "${{ github.workspace }}/build/Torzu_winOS-x64.zip"
-          tag: $env:CURRENT_DATE
+          tag: v$env:CURRENT_DATE
           commit: master
           allowUpdates: true
           replacesArtifacts: true
