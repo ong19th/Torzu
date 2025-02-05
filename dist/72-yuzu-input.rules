@@ -7,13 +7,13 @@
 
 # Switch Pro Controller (USB/Bluetooth)
 KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2009", MODE="0660", TAG+="uaccess"
-KERNEL=="hidraw*", KERNELS=="*057e:2009*", MODE="0660", TAG+="uaccess"
+KERNEL=="hidraw*", KERNELS=="*057E:2009*", MODE="0660", TAG+="uaccess"
 
 # Joy-Con L (Bluetooth)
-KERNEL=="hidraw*", KERNELS=="*057e:2006*", MODE="0660", TAG+="uaccess"
+KERNEL=="hidraw*", KERNELS=="*057E:2006*", MODE="0660", TAG+="uaccess"
 
 # Joy-Con R (Bluetooth)
-KERNEL=="hidraw*", KERNELS=="*057e:2007*", MODE="0660", TAG+="uaccess"
+KERNEL=="hidraw*", KERNELS=="*057E:2007*", MODE="0660", TAG+="uaccess"
 
 # Joy-Con Charging Grip (USB)
 KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="200e", MODE="0660", TAG+="uaccess"

@@ -26,6 +26,8 @@ I highly advice against downloading anything from these websites, specially if t
 There's an IRC now! Connect to `mao7u6s7jwxeof2fax2kwwqeabyevy5b2icbl24lhgnmkebbtmh37had.onion` port `6667` using your favorite client and join `#torzu`. Connecting via Tor might require a bit of setup but that shouldn't take much more than a quick web search to figure out.
 Please **register your nicks**!
 
+**Note that my email address is dead**, so if anyone who's attempted to contact me there and is wondering about the lack of a response, that's why. I have given up attempting to contact the provider about it.
+
 ## Limited public development
 
 I feel like working publicly on this has taken away the fun. You may not understand, but it's quite stressful to have the public eye on a project.

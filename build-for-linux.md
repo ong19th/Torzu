@@ -128,7 +128,7 @@ All other dependencies will be downloaded by [vcpkg](https://vcpkg.io/) if neede
 - Fedora:
 
   ```bash
-  sudo dnf install autoconf ccache cmake ffmpeg-devel fmt-devel gcc{,-c++} glslang hidapi-devel json-devel libtool libusb1-devel libXext-devel libzstd-devel lz4-devel nasm ninja-build openssl-devel pulseaudio-libs-devel qt5-linguist qt5-qtbase{-private,}-devel qt5-qtmultimedia-devel qt5-qtwebengine-devel shasum speexdsp-devel wayland-devel zlib-devel
+  sudo dnf install autoconf ccache cmake ffmpeg-devel fmt-devel gcc{,-c++} glslang hidapi-devel json-devel libtool libusb1-devel libXext-devel libzstd-devel lz4-devel nasm ninja-build openssl-devel pulseaudio-libs-devel qt5-linguist qt5-qtbase{-private,}-devel qt5-qtmultimedia-devel qt5-qtwebengine-devel shasum speexdsp-devel wayland-devel zlib-devel perl-Digest-SHA
   ```
   - Fedora 32 or later is required.
   - Due to GCC 12, Fedora 36 or later users need to install `clang`, and configure CMake to use it via `-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang`
@@ -173,6 +173,24 @@ mkdir build && cd build
 cmake .. -GNinja -DYUZU_USE_BUNDLED_VCPKG=ON -DYUZU_TESTS=OFF
 ninja
 ```
+
+If building for the Steam Deck and you have LLVM 17 installed, you need to disable linking against it in the CMake command. The Steam Deck, as of SteamOS v3.6.20, includes `libLLVM-16`. 
+
+To verify which libraries your application is linking against, you can use the ldd command. For example:
+
+```bash
+ldd torzu/build/bin/yuzu
+```
+
+Look for entries related to `libLLVM` (or grep the ldd output). If it shows `libLLVM-17`, you need to adjust your configuration.
+
+Use the following CMake command to disable linking against LLVM 17, instead of the one above:
+
+```bash
+cmake .. -GNinja -DYUZU_USE_BUNDLED_VCPKG=ON -DYUZU_TESTS=OFF -DYUZU_USE_LLVM_DEMANGLE=OFF
+ninja
+```
+
 There should now be executable binaries located in the `torzu/build/bin` folder.
 
 You can choose to (all starting from the `build` folder):

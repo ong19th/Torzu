@@ -11,6 +11,7 @@ fi
 # Get paths
 ARCH="$(uname -m)"
 SYSTEM_LIBS="/usr/lib"
+SYSTEM_LIBS64="/usr/lib64"
 YUZU_BIN="${1}/bin"
 YUZU_BIN_GUI="${YUZU_BIN}/yuzu"
 
@@ -24,20 +25,29 @@ rm -rf build
 mkdir build
 
 # NOTE: some of these aren't used now, but can be reordered in priority when torzu is converted to QT6
-# Find QT folder (Steam Deck fix), check for default qt5 first
+# QT5 - /usr/lib/${ARCH}-linux-gnu/qt5 (debian), /usr/lib64/qt5 (fedora), /usr/lib/qt (steam deck)
+# QT5 - /usr/lib/${ARCH}-linux-gnu/qt6 (debian), /usr/lib64/qt6 (fedora), /usr/lib/qt6 (steam deck)
 QTFOUND="true"
 QTDIR="$SYSTEM_LIBS"/${ARCH}-linux-gnu/qt5/plugins
 if [ ! -d "$QTDIR" ]; then
-  # default qt5 folder not found, check for Steam Deck qt (qt5) folder
-  QTDIR="$SYSTEM_LIBS"/qt/plugins
+  # default qt5 folder not found, check for 64-bit qt5 folder
+  QTDIR="$SYSTEM_LIBS64"/qt5/plugins
   if [ ! -d "$QTDIR" ]; then
-    # Steam Deck qt (qt5) folder not found, check for regular qt6 folder
-    QTDIR="$SYSTEM_LIBS"/${ARCH}-linux-gnu/qt6/plugins
+    # 64-bit qt5 folder not found, check for Steam Deck qt (qt5) folder
+    QTDIR="$SYSTEM_LIBS"/qt/plugins
     if [ ! -d "$QTDIR" ]; then
-      # regular qt6 folder not found, check for Steam Deck qt6 folder
-      QTDIR="$SYSTEM_LIBS"/qt6/plugins
+      # Steam Deck qt (qt5) folder not found, check for regular qt6 folder
+      QTDIR="$SYSTEM_LIBS"/${ARCH}-linux-gnu/qt6/plugins
       if [ ! -d "$QTDIR" ]; then
-        QTFOUND="false"
+        # regular qt6 folder not found, check for 64-bit qt6 folder
+        QTDIR="$SYSTEM_LIBS64"/qt6/plugins
+        if [ ! -d "$QTDIR" ]; then
+          # 64-bit qt6 folder not found, check for Steam Deck qt6 folder
+          QTDIR="$SYSTEM_LIBS"/qt6/plugins
+          if [ ! -d "$QTDIR" ]; then
+            QTFOUND="false"
+          fi
+        fi
       fi
     fi
   fi

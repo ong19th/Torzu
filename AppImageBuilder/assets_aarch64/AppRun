@@ -3,11 +3,11 @@
 cd "$APPDIR"
 
 if [ -d /usr/lib/aarch64-linux-gnu/qt5 ]; then
-    exec ./yuzu-bwrap.sh
+    exec ./yuzu-bwrap.sh "$@"
 else
     if [ -d /usr/lib/aarch64-linux-gnu/qt6 ]; then
-        exec ./yuzu-bwrap.sh
+        exec ./yuzu-bwrap.sh "$@"
     else
-        exec ./yuzu.sh
+        exec ./yuzu.sh "$@"
     fi
 fi
