@@ -37,7 +37,7 @@ jobs:
           python-version: '3.13' 
 
       - name: Prepare CMake
-        uses: lukka/get-cmake@latest
+        uses: lukka/get-cmake@v3.31.6
 
       - name: Configure CMake Build Location
         run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release
