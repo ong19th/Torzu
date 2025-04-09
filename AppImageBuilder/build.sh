@@ -60,12 +60,36 @@ if [ $QTFOUND == "true" ]; then
   #   - '/lib64/ld-linux-x86-64.so.2' or `/lib/ld-linux-aarch64.so.1` file per architecture
   #   - required files from `/usr/lib/x86_64-linux-gnu` or `/usr/lib/aarch64-linux-gnu`
   #   - different for SteamDeck, but still does it automatically
-  for lib in $(ldd "$YUZU_BIN_GUI"); do
-      (cp -v "$lib" ./build/ 2> /dev/null) || true
-  done
+  function copy_libs {
+    for lib in $(ldd "$1"); do
+      (cp -vn "$lib" ./build/ 2> /dev/null) || true
+    done
+  }
+  echo "Copying main dependencies..."
+  copy_libs "$YUZU_BIN_GUI"
 
   # Copy QT dependency folders, path determined above
-  cp -rv "$QTDIR"/{imageformats,platforms,platformthemes,xcbglintegrations} ./build/
+  echo "Copying Qt dependencies..."
+  mkdir ./build/qt5
+  cp -rv "$QTDIR"/{imageformats,platforms,platformthemes,xcbglintegrations} ./build/qt5/
+
+  # Discover indirect dependencies (mostly from runtime-loaded Qt plugins)
+  echo "Copying extra dependencies..."
+  while true; do
+    LIBS="$(find ./build -name \*.so\*)"
+    LIB_COUNT=$(echo "$LIBS" | wc -l)
+    echo "$LIB_COUNT dependency libraries discovered so far..."
+    if [ $LIB_COUNT == "$PREV_LIB_COUNT" ]; then
+      break
+    fi
+    PREV_LIB_COUNT=$LIB_COUNT
+
+    for plib in $LIBS; do
+      if [ -f "$plib" ]; then
+        copy_libs "$plib"
+      fi
+    done
+  done
 
   # Copy executable
   cp -v "$YUZU_BIN_GUI" ./build/

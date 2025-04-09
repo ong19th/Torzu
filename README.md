@@ -21,30 +21,10 @@ It is written in C++ with portability in mind and runs on Linux, Windows and And
 A lot of fake Torzu websites have popped up. These are not mine. **This project will not have a clearnet website for the foreseeable future!**
 I highly advice against downloading anything from these websites, specially if their intention is clearly to make money through advertisements.
 
-## IRC
+## Infrastructure back up online
 
-There's an IRC now! Connect to `mao7u6s7jwxeof2fax2kwwqeabyevy5b2icbl24lhgnmkebbtmh37had.onion` port `6667` using your favorite client and join `#torzu`. Connecting via Tor might require a bit of setup but that shouldn't take much more than a quick web search to figure out.
-Please **register your nicks**!
-
-**Note that my email address is dead**, so if anyone who's attempted to contact me there and is wondering about the lack of a response, that's why. I have given up attempting to contact the provider about it.
-
-## Limited public development
-
-I feel like working publicly on this has taken away the fun. You may not understand, but it's quite stressful to have the public eye on a project.
-Keep in mind, this is just a hobby project. I feel like I always have to keep updating so I don't disappoint you. It's just not a good situation for a hobby project to be in.
-Turns out: running an open source project takes a lot more time than I have.
-And then stupid and unnecessary issues like Windows Defender flagging the emulator as malware ruin the rest. I am grateful for all your bug reports, help and support, but all that has distracted me from taking the project into the direction I would've liked.
-
-It is not all over though. My plan is to:
- - Continue the blog
- - Keep this repository updated enough so it stays compilable on Linux and Windows
- - Keep the externals updated
- - NOT publish releases. If someone feels like publishing builds they should feel free to do that
- - NOT offer support in any way
-   - Feel free to open issues on the main repository though if you feel like an issue REALLY needs my attention
- - Accept pull requests as long as they are of reasonable quality
-
-Again, thanks to everyone who has supported my efforts so far in any way (even by creating bug reports), I really appreciate it.
+There have been issues with the infrastructure running the main repository while I've been away from home. It should be all back and functional now!
+Sorry for that!
 
 ## Compatibility
 
